@@ -174,6 +174,19 @@ function copyToClipboard(text) {
     $('body').scrollTop(scrollsave);
 }
 
+function exportAsJson(text) {
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', 'cookies-' + new Date().toISOString());
+
+    element.style.display = 'none';
+    document.body.appendChild(element);
+
+    element.click();
+
+    document.body.removeChild(element);
+}
+
 function isChristmasPeriod() {
     var nowDate = new Date();
     var isMidDecember = (nowDate.getMonth() === 11 && nowDate.getDate() > 5);
